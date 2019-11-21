@@ -17,9 +17,28 @@ LABEL Author="gamedevone1@gmail.com"
 # - Optional - yasm (for WebM SIMD optimizations)
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev \
-    libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libfreetype6-dev \
-    libudev-dev libxi-dev libxrandr-dev yasm
+    ca-certificates \
+    git \
+    python \
+    python-openssl \
+    unzip \
+    wget \
+    zip \
+    build-essential \
+    scons \
+    pkg-config \
+    libx11-dev \
+    libxcursor-dev 
+    libxinerama-dev \
+    libgl1-mesa-dev \
+    libglu-dev \
+    libasound2-dev \
+    libpulse-dev \
+    libfreetype6-dev \
+    libudev-dev \
+    libxi-dev \
+    libxrandr-dev \
+    yasm
 
 #VERSION OF GODOT
 
