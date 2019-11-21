@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file .devcontainer/Dockerfile --tag Godot-CI-CD:$(date +%d-%b-%y)
+      run: docker build . --file .devcontainer/Dockerfile --tag godot-ci-cd:$(date +%d-%b-%y)
