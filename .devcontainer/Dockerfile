@@ -41,10 +41,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     yasm
 
 #VERSION OF GODOT
-
 ENV GODOT_VERSION "3.1.1"
 
-# INSTALL GODOT HEADLESS
+#INSTALL GODOT HEADLESS
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz \
     && mkdir ~/.cache \
@@ -59,3 +58,30 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${G
 
 #MOVE PROJECT INTO DOCKER IMG
 COPY project/* ~/project/
+
+#SET WORKING DIRECTORY
+WORKDIR ~/project
+
+#ENSURE NO PREVIOUS EXPORTS
+RUN rm -rf ~/project/build \
+    && mkdir ~/project/build \
+    && cd ~/project
+
+#CREATE EXPORT FOLDERS
+RUN mkdir -v -p ~/project/build/linux \
+    && mkdir -v -p ~/project/build/windows \
+    && mkdir -v -p ~/project/build/mac \
+    && mkdir -v -p ~/project/build/web
+    
+#GRAB NAME OF PROJECT
+RUN export EXPORT_NAME=$(cat *.godot | grep "config/name" | awk -F'"' '{print $2}')
+
+#CREATE GODOT EXPORTS
+RUN godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
+RUN godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+RUN godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
+RUN godot -v --export "HTML5" ./build/web/index.html
+
+
+
+
