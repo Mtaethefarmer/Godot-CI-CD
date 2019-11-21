@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     scons \
     pkg-config \
     libx11-dev \
-    libxcursor-dev 
+    libxcursor-dev \
     libxinerama-dev \
     libgl1-mesa-dev \
     libglu-dev \
