@@ -58,4 +58,4 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${G
     && rm -f Godot_v${GODOT_VERSION}-stable_export_templates.tpz Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
 
 #MOVE PROJECT INTO DOCKER IMG
-COPY project/* ~/project
+COPY project/* ~/project/
