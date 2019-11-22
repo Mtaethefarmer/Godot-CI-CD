@@ -82,6 +82,7 @@ RUN godot -v --export "Windows Desktop" ~/project/build/windows/$EXPORT_NAME.exe
 RUN godot -v --export "Mac OSX" ~/project/build/mac/$EXPORT_NAME.zip
 RUN godot -v --export "HTML5" ~/project/build/web/index.html
 
-
-
-
+#LIST BUILDS AFTER COMPLETION
+RUN echo "~~~~~~~BUILD~~~~~~~" \
+    && ls -R ~/project/build/ \
+    && echo "~~~~~~~BUILD~~~~~~~"
