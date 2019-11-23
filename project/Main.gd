@@ -6,6 +6,9 @@ var score
 func _ready():
 	randomize()
 	
+func _exit_tree():
+	Mob.free()
+	
 func new_game():
 	score = 0
 	$HUD.update_score(score)
