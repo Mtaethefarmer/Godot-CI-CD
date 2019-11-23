@@ -77,10 +77,10 @@ RUN mkdir -v -p ~/project/build/linux \
 RUN export EXPORT_NAME=$(cat *.godot | grep "config/name" | awk -F'"' '{print $2}')
 
 #CREATE GODOT EXPORTS
-RUN godot -v --export "Linux/X11" ~/project/build/linux/$EXPORT_NAME.x86_64
-RUN godot -v --export "Windows Desktop" ~/project/build/windows/$EXPORT_NAME.exe
-RUN godot -v --export "Mac OSX" ~/project/build/mac/$EXPORT_NAME.zip
-RUN godot -v --export "HTML5" ~/project/build/web/index.html
+RUN godot -v -q --export "Linux/X11" ~/project/build/linux/$EXPORT_NAME.x86_64
+RUN godot -v -q --export "Windows Desktop" ~/project/build/windows/$EXPORT_NAME.exe
+RUN godot -v -q --export "Mac OSX" ~/project/build/mac/$EXPORT_NAME.zip
+RUN godot -v -q --export "HTML5" ~/project/build/web/index.html
 
 #LIST BUILDS AFTER COMPLETION
 RUN echo "~~~~~~~BUILD~~~~~~~" \
