@@ -15,19 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="dodge_3.0"
+config/name="project"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
-
-[display]
-
-window/size/width=480
-window/size/height=720
-window/size/resizable=false
-
-[gdnative]
-
-singletons=[  ]
 
 [rendering]
 
