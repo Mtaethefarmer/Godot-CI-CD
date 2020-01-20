@@ -49,11 +49,11 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/rc2/Godot_
     && mkdir ~/.cache \
     && mkdir ~/project \
     && mkdir -p ~/.config/godot \
-    && mkdir -p ~/.local/share/godot/templates/${GODOT_VERSION}-rc2 \
+    && mkdir -p ~/.local/share/godot/templates/${GODOT_VERSION}.rc2 \
     && unzip Godot_v${GODOT_VERSION}-rc2_linux_headless.64.zip \
     && mv Godot_v${GODOT_VERSION}-rc2_linux_headless.64 /usr/local/bin/godot \
     && unzip Godot_v${GODOT_VERSION}-rc2_export_templates.tpz \
-    && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}-rc2 \
+    && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.rc2 \
     && rm -f Godot_v${GODOT_VERSION}-rc2_export_templates.tpz Godot_v${GODOT_VERSION}-rc2_linux_headless.64.zip
 
 #MOVE PROJECT INTO DOCKER IMG
