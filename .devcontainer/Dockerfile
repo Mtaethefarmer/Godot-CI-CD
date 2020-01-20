@@ -44,8 +44,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV GODOT_VERSION "3.2"
 
 #INSTALL GODOT HEADLESS
-RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-rc2_linux_headless.64.zip \
-    && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-rc2_export_templates.tpz \
+RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/rc2/Godot_v${GODOT_VERSION}-rc2_linux_headless.64.zip \
+    && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/rc2/Godot_v${GODOT_VERSION}-rc2_export_templates.tpz \
     && mkdir ~/.cache \
     && mkdir ~/project \
     && mkdir -p ~/.config/godot \
