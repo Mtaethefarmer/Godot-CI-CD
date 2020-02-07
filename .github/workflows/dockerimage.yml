@@ -1,14 +1,45 @@
 name: Godot Docker Image CI
 
-on: [push]
+on: push
 
 jobs:
-
-  build:
-    name: Godot Game Engine Headless Build
+  Build Enviornment:
+    name: Download Dependancies
     runs-on: ubuntu-latest
-
+    #DEPENDANCIES NEEDED:
+    # - GCC or Clang
+    # - Python 3 or 2.7+
+    # - SCons build system (3.0 or later for Python 3)
+    # - pkg-config (used to detect the dependencies below)
+    # - X11, Xcursor, Xinerama, Xi and XRandR development libraries
+    # - MesaGL development libraries
+    # - ALSA development libraries
+    # - PulseAudio development libraries
+    # - Optional - libudev (build with udev=yes)
+    # - Optional - yasm (for WebM SIMD optimizations)
     steps:
-    - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build . --file .devcontainer/Dockerfile --tag godot-ci-cd:$(date +%d-%b-%y)
+    - name: Setup Enviornment
+      run: |
+        apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        git \
+        python \
+        python-openssl \
+        unzip \
+        wget \
+        zip \
+        build-essential \
+        scons \
+        pkg-config \
+        libx11-dev \
+        libxcursor-dev \
+        libxinerama-dev \
+        libgl1-mesa-dev \
+        libglu-dev \
+        libasound2-dev \
+        libpulse-dev \
+        libfreetype6-dev \
+        libudev-dev \
+        libxi-dev \
+        libxrandr-dev \
+        yasm
