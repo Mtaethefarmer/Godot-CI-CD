@@ -3,7 +3,7 @@ name: Godot Docker Image CI
 on: push
 
 jobs:
-  Build Enviornment:
+  build:
     name: Download Dependancies
     runs-on: ubuntu-latest
     #DEPENDANCIES NEEDED:
