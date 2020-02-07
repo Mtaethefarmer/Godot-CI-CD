@@ -56,34 +56,13 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${G
     && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.stable \
     && rm -f Godot_v${GODOT_VERSION}-stable_export_templates.tpz Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip
 
-#MOVE PROJECT INTO DOCKER IMG
-COPY project/* ~/project/
-
-#SET WORKING DIRECTORY
-WORKDIR ~/project
-
-#ENSURE NO PREVIOUS EXPORTS
-RUN rm -rf ~/project/build \
-    && mkdir ~/project/build \
-    && cd ~/project
-
-#CREATE EXPORT FOLDERS
-RUN mkdir -v -p ~/project/build/linux \
-    && mkdir -v -p ~/project/build/windows \
-    && mkdir -v -p ~/project/build/mac \
-    && mkdir -v -p ~/project/build/web
-    
-#GRAB NAME OF PROJECT
-RUN export EXPORT_NAME=$(cat *.godot | grep "config/name" | awk -F'"' '{print $2}')
-
-#CREATE GODOT EXPORTS
-#RUN timeout 30 godot -v --editor || true
-RUN godot project.godot -v -q --export "Linux/X11" ~/project/build/linux/$EXPORT_NAME.x86_64
-RUN godot project.godot -v -q --export "Windows Desktop" ~/project/build/windows/$EXPORT_NAME.exe
-RUN godot project.godot -v -q --export "Mac OSX" ~/project/build/mac/$EXPORT_NAME.zip
-RUN godot project.godot -v -q --export "HTML5" ~/project/build/web/index.html
-
-#LIST BUILDS AFTER COMPLETION
-RUN echo "~~~~~~~BUILD~~~~~~~" \
-    && ls -R ~/project/build/ \
-    && echo "~~~~~~~BUILD~~~~~~~"
+#INSTALL BUTLER FROM ITCH.IO
+RUN mkdir -p /opt/butler/bin \ 
+    cd /opt/butler/bin \
+    wget -O butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default \
+    unzip butler.zip \
+    chmod +x butler \
+    export PATH=/opt/butler/bin/:$PATH \
+    cd ~
+RUN /opt/butler/bin/butler -V
+ENV PATH="/opt/butler/bin:${PATH}"
