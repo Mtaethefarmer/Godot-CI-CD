@@ -38,7 +38,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libudev-dev \
     libxi-dev \
     libxrandr-dev \
-    yasm
+    yasm \
+    which ca-certificates \
+    which git \
+    which python \
+    which python-openssl \
+    which unzip \
+    which wget \
+    which zip \
+    which build-essential \
+    which scons \
+    which pkg-config \
+    which libx11-dev \
+    which libxcursor-dev \
+    which libxinerama-dev \
+    which libgl1-mesa-dev \
+    which libglu-dev \
+    which libasound2-dev \
+    which libpulse-dev \
+    which libfreetype6-dev \
+    which libudev-dev \
+    which libxi-dev \
+    which libxrandr-dev \
+    which yasm
 
 #VERSION OF GODOT
 ENV GODOT_VERSION "3.2"
